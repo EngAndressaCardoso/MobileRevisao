@@ -1,17 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      Cadastro de Utilizador
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
+      <ion-title size="large">Cadastro</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <!-- Campo Nome -->
+  <ion-item>
+    <ion-input label="Nome" labelPlacement="stacked" [(ngModel)]="nome" placeholder="Digite o seu nome"></ion-input>
+  </ion-item>
+
+  <!-- Campo E-mail -->
+  <ion-item>
+    <ion-input label="E-mail" labelPlacement="stacked" type="email" [(ngModel)]="email" placeholder="Digite o seu e-mail"></ion-input>
+  </ion-item>
+
+  <!-- Campo Senha -->
+  <ion-item>
+    <ion-input label="Senha" labelPlacement="stacked" type="password" [(ngModel)]="senha" placeholder="Digite a sua senha"></ion-input>
+  </ion-item>
+
+  <!-- Botões de Ação -->
+  <div class="ion-margin-top">
+    <ion-button expand="block" (click)="salvar()">Salvar</ion-button>
+    <ion-button expand="block" color="medium" (click)="limpar()">Limpar</ion-button>
+  </div>
 </ion-content>

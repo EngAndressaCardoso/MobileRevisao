@@ -1,0 +1,7 @@
+{
+  "name": "MobileRevisao",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

@@ -1,17 +1,49 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 2
+      Lista de Tarefas
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
+      <ion-title size="large">Tarefas</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <!-- Input e Botão de Adicionar -->
+  <ion-item>
+    <ion-input 
+      label="Nova Tarefa" 
+      labelPlacement="stacked" 
+      [(ngModel)]="novaTarefa" 
+      placeholder="O que precisa de ser feito?">
+    </ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="adicionarTarefa()">
+    Adicionar Tarefa
+  </ion-button>
+
+  <!-- Lista Dinâmica com *ngFor -->
+  <ion-list class="ion-margin-top">
+    <ion-item *ngFor="let t of tarefas; let i = index">
+      <ion-checkbox slot="start" [checked]="t.concluida" (ionChange)="alternarConcluida(t)"></ion-checkbox>
+      
+      <ion-label [class.ion-text-strike]="t.concluida">
+        {{ t.nome }}
+      </ion-label>
+
+      <ion-button slot="end" color="danger" fill="clear" (click)="removerTarefa(i)">
+        <ion-icon name="trash" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-item>
+  </ion-list>
+
+  <!-- Botão do Desafio: Limpar Todas as Tarefas -->
+  <ion-button expand="block" color="danger" class="ion-margin-top" (click)="limparTodasTarefas()">
+    Limpar Todas as Tarefas
+  </ion-button>
 </ion-content>

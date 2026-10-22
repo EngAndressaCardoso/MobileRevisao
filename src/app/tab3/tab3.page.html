@@ -1,17 +1,51 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 3
+      Consulta CEP
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" class="ion-padding">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
+      <ion-title size="large">Consulta CEP</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <!-- Input do CEP -->
+  <ion-item>
+    <ion-input 
+      label="CEP (apenas números)" 
+      labelPlacement="stacked" 
+      [(ngModel)]="cep" 
+      maxlength="8"
+      placeholder="Ex: 01001000">
+    </ion-input>
+  </ion-item>
+
+  <ion-button expand="block" class="ion-margin-top" (click)="consultarCep()" [disabled]="carregando">
+    <span *ngIf="!carregando">Buscar CEP</span>
+    <ion-spinner *ngIf="carregando" name="crescent"></ion-spinner>
+  </ion-button>
+
+  <!-- Mensagem de Erro -->
+  <ion-text color="danger" *ngIf="erro">
+    <p class="ion-padding-top">{{ erro }}</p>
+  </ion-text>
+
+  <!-- Exibição dos Dados do Endereço (Card) -->
+  <ion-card *ngIf="endereco" class="ion-margin-top">
+    <ion-card-header>
+      <ion-card-title>Resultado da Consulta</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p><strong>CEP:</strong> {{ endereco.cep }}</p>
+      <p><strong>Logradouro:</strong> {{ endereco.logradouro }}</p>
+      <p><strong>Bairro:</strong> {{ endereco.bairro }}</p>
+      <p><strong>Cidade:</strong> {{ endereco.localidade }}</p>
+      <p><strong>Estado:</strong> {{ endereco.uf }}</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
